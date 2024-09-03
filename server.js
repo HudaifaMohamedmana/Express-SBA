@@ -16,19 +16,19 @@ app.get('/serieA',(req,res)=>{
 })
 
 app.get('/LaLiga',(req,res)=>{
-    res.render(LaLigaData)
+    res.send(LaLigaData)
 })
 
 app.get('/Ligue1',(req,res)=>{
-    res.render(Ligue1Date)
+    res.send(Ligue1Date)
 })
 
 app.get('/Bundesliga',(req,res)=>{
-    res.render(Bundesliga)
+    res.send(Bundesliga)
 })
 
 app.get('/PremierLeague',(req,res)=>{
-    res.render(PremierLeagueData)
+    res.json(PremierLeagueData)
 })
 //-----------------------------------------------
 app.get(`/`,(req,res)=>{
