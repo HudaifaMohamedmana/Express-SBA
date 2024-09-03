@@ -1,10 +1,22 @@
 const express = require('express')
 const app = express();
 //=================--------------------------------==========================
+const LaLigaData = require('./models/LaLiga')
+const serieAData = require('./models/serieA')
+const PremierLeagueData = require('./models/PremierLeague');
+
 //---------------------------------
 app.set('view engine','ejs')
+//------------------------------------
+app.get('/serieA',(req,res)=>{
+    res.send(serieAData)
+})
+// ----------> [GET] => Retrieve Data from a server
+app.get('/LaLiga',(req,res)=>{
+    res.render(laLigaTeams)
+})
+//-----------------------------------------------
 app.get(`/`,(req,res)=>{
-    // res.send ('hello world')
     res.render(`rout`)
 })
 app.get(`/home`,(req,res)=>{
