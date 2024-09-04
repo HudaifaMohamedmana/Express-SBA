@@ -1,11 +1,5 @@
 
-function checkingPrams(post, res, param) {
-    if (post.length === 0) {
-        res.status(404).send({ Error: `404 '${param}' not found` });
-    } else {
-        res.status(200).send(post);
-    }
-}
+
 
 //----------------------------------------------------------------------------------
 function getLeague(req, res ) {
@@ -23,17 +17,39 @@ function getLeague(req, res ) {
 }
 function getTeamByID(req, res){
     const League = req.params.league.toLowerCase();
-    const LeagueData = require(`../models/${League}`)
     const id = parseInt(req.params.id);
-    const post = LeagueData.filter(post => post.id === id);
-    checkingPrams(post, res, id);
+    
+    try{
+        const LeagueData = require(`../models/${League}`)
+        const post = LeagueData.filter(post => post.id === id);
+
+        if (post.length === 0) {
+            res.status(404).send({ Error: `404; id '${id}' is not found` });
+        } else {
+            res.status(200).send(post);
+        }
+    } catch (error) {
+        res.status(500).json({ error: error.message});
+    }
 }
 function getTeamByname(req, res) {
     const League = req.params.league.toLowerCase();
-    const LeagueData = require(`../models/${League}`)
     const name = req.params.name.toLowerCase();
-    const post = LeagueData.filter(post => post.name.toLowerCase() === name);
-    checkingPrams(post, res, name);
+    
+    try{
+        const LeagueData = require(`../models/${League}`)
+        
+        const post = LeagueData.filter(post => post.name.toLowerCase() === name);
+        console.log(post.length)
+
+        if (post.length === 0) {
+            res.status(404).send({ Error: `404 '${name}' not found` });
+        } else {
+            res.status(200).send(post);
+        }
+    } catch (error) {
+        res.status(500).json({ error: error.message});
+    }
 }
 
 
