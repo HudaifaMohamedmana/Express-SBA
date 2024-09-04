@@ -38,7 +38,7 @@ app.get('/LaLiga/name/:name',(req,res)=>{
 })
 //---------------------------------------
 app.get('/Ligue1',(req,res)=>{
-    res.send(Ligue1Date)
+    res.send(Ligue1Data)
 })
 app.get('/Ligue1/id/:id', (req,res)=>{
     const id = parseInt(req.params.id);
